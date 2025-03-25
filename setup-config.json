@@ -14,7 +14,7 @@
   ],
   "steps": [
     {
-      "title": "\n📱 Development Environment\n",
+      "title": "\u001b[32m\n📱 Development Environment\u001b[0m\n",
       "description": "\nConfigure your local development environment\n",
       "instructions": "\nThis URL is used for local development and OAuth callback URLs. \nKeep the default unless you have a custom port setup.\n",
       "variables": [
@@ -27,15 +27,15 @@
       "interactive": false
     },
     {
-      "title": "🔌 Convex Setup\n",
+      "title": "\u001b[32m🔌 Convex Setup\u001b[0m\n",
       "description": "Set up your real-time backend for workspace collaboration\n",
       "instructions": [
-        "1. Visit https://dashboard.convex.dev and create an account\n",
+        "1. Visit \u001b[34mhttps://dashboard.convex.dev\u001b[0m and create an account\n",
         "2. Create a new project named after your workspace (e.g., 'workspace-manager')\n",
         "3. In the project dashboard:\n",
         "   - Go to Settings > URL & Deploy Key\n",
         "   - Copy your unique deployment URL\n",
-        "   - Format: https://[project-id].convex.cloud\n",
+        "   - Format: \u001b[34mhttps://[project-id].convex.cloud\u001b[0m\n",
         "4. This URL will power your real-time data sync and authentication\n"
       ],
       "variables": [
@@ -43,20 +43,20 @@
           "name": "NEXT_PUBLIC_CONVEX_URL",
           "projects": ["web"],
           "template": "{{convexUrl}}",
-          "defaultValue": "https://example-123.convex.cloud"
+          "defaultValue": "\u001b[34mhttps://example-123.convex.cloud\u001b[0m"
         }
       ]
     },
     {
-      "title": "🔑 GitHub Authentication\n",
+      "title": "\u001b[32m🔑 GitHub Authentication\u001b[0m\n",
       "description": "Enable secure workspace access with GitHub authentication\n",
       "instructions": [
-        "1. Go to https://github.com/settings/developers\n",
+        "1. Go to \u001b[34mhttps://github.com/settings/developers\u001b[0m\n",
         "2. Click 'New OAuth App'\n",
         "3. Configure your application:\n",
         "   - Name: Your Workspace Manager\n",
-        "   - Homepage URL: {{NEXT_PUBLIC_APP_URL}}\n",
-        "   - Authorization callback URL: {{convexSiteUrl}}/auth/github/callback\n",
+        "   - Homepage URL: \u001b[34m{{NEXT_PUBLIC_APP_URL}}\u001b[0m\n",
+        "   - Authorization callback URL: \u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n",
         "4. After registration:\n",
         "   - Save your Client ID\n",
         "   - Generate and save your Client Secret\n",
@@ -67,7 +67,7 @@
           "name": "AUTH_GITHUB_ID",
           "projects": ["convex"],
           "info": [
-            "Use this as your authorized redirect URI: {{convexSiteUrl}}/auth/github/callback"
+            "Use this as your authorized redirect URI: \u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m"
           ]
         },
         {
@@ -77,18 +77,18 @@
       ]
     },
     {
-      "title": "💳 Polar Integration\n",
+      "title": "\u001b[32m💳 Polar Integration\u001b[0m\n",
       "description": "Configure Polar for workspace subscription handling\n",
       "instructions": [
-        "1. Create your account at https://polar.sh\n",
+        "1. Create your account at \u001b[34mhttps://polar.sh\u001b[0m\n",
         "2. Set up your organization:\n",
         "   - Click 'Sell with Polar'\n",
-        "   - For development: Use https://sandbox.polar.sh/dashboard/create\n",
+        "   - For development: Use \u001b[34mhttps://sandbox.polar.sh/dashboard/create\u001b[0m\n",
         "3. Configure your integration:\n",
         "   - Organization ID: Settings > General > Organization\n",
         "   - Access Token: Settings > Developers (enable all permissions)\n",
         "   - Webhook: Settings > Webhooks\n",
-        "     • URL: {{convexSiteUrl}}/payments/webhook\n",
+        "     • URL: \u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m\n",
         "     • Events: Select all subscription and payment events\n",
         "     • Format: Raw\n",
         "4. These settings will enable workspace subscription management\n"
@@ -106,7 +106,7 @@
           "name": "POLAR_WEBHOOK_SECRET",
           "projects": ["convex", "web"],
           "info": [
-            "Use this as your authorized redirect URI: {{convexSiteUrl}}/payments/webhook"
+            "Use this as your authorized redirect URI: \u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m"
           ]
         }
       ],
@@ -115,10 +115,10 @@
       ]
     },
     {
-      "title": "📧 Resend Email Service\n",
+      "title": "\u001b[32m📧 Resend Email Service\u001b[0m\n",
       "description": "Set up Resend for workspace notifications and invites\n",
       "instructions": [
-        "1. Sign up at https://resend.com\n",
+        "1. Sign up at \u001b[34mhttps://resend.com\u001b[0m\n",
         "2. Configure your API access:\n",
         "   - Go to API Keys\n",
         "   - Create a new key (starts with 're_')\n",

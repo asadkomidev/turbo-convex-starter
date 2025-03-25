@@ -34,7 +34,7 @@ export const getProOnboardingCheckoutUrl = action({
     const checkout = await createCheckout({
       customerEmail: user.email!,
       priceId: args.priceId,
-      successUrl: `${process.env.FRONTEND_URL}/success`,
+      successUrl: `${process.env.SITE_URL}/success`,
       metadata: metadata as Record<string, string>,
     });
 
