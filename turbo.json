@@ -1,6 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
+  "globalEnv": ["POLAR_ACCESS_TOKEN", "POLAR_ORGANIZATION_ID"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

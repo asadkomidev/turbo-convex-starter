@@ -1,0 +1,21 @@
+{
+  "name": "@workspace/backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "convex dev",
+    "setup": "convex dev --until-success"
+  },
+  "dependencies": {
+    "@auth/core": "0.37.0",
+    "@convex-dev/auth": "^0.0.80",
+    "@oslojs/crypto": "^1.0.1",
+    "@polar-sh/sdk": "^0.32.0",
+    "@react-email/components": "^0.0.34",
+    "@react-email/render": "^1.0.5",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "convex": "^1.21.0",
+    "resend": "^4.0.0"
+  }
+}
