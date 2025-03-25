@@ -1,5 +1,5 @@
 {
-  "introMessage": "Let's set up your services and environment variables.",
+  "introMessage": "🚀 Welcome to Turbo-Convex Starter! Let's set up your services and environment variables.",
   "projects": [
     {
       "id": "convex",
@@ -18,81 +18,97 @@
   ],
   "steps": [
     {
-      "title": "App URL",
-      "description": "The URL of the app, used for linking from the web app.",
+      "title": "📱 App URL Configuration",
+      "description": "Set up the base URL for your application",
       "variables": [
         {
           "name": "NEXT_PUBLIC_APP_URL",
           "projects": ["web"],
-          "details": "This is the URL of the app, used for linking from the web app.",
-          "defaultValue": "http://localhost:3000"
+          "details": "The URL where your app will be accessible. For local development, use the default value.",
+          "defaultValue": "http://localhost:3000",
+          "prompt": "Enter your app URL"
         }
       ],
       "interactive": false
     },
     {
-      "title": "Convex",
-      "description": "Convex is a complete backend platform that provides a database, API, and authentication.",
-      "instructions": "Set up a Convex project at https://dashboard.convex.dev and obtain your Convex URL.",
+      "title": "🔌 Convex Setup",
+      "description": "Configure your Convex backend connection",
+      "instructions": [
+        "1. Go to https://dashboard.convex.dev",
+        "2. Create a new project or select an existing one",
+        "3. Copy your Deployment URL from Settings > URL & Deploy Key"
+      ],
       "variables": [
         {
           "name": "NEXT_PUBLIC_CONVEX_URL",
           "projects": ["web", "app"],
-          "details": "You can find your Convex DeploymentURL in the Convex dashboard under 'Settings' > 'URL & Deploy Key'. It should look like 'https://example-123.convex.cloud'.",
+          "details": "The URL that connects your app to your Convex backend. Format: https://[deployment-id].convex.cloud",
           "template": "{{convexUrl}}",
-          "defaultValue": "https://example-123.convex.cloud"
+          "defaultValue": "https://example-123.convex.cloud",
+          "prompt": "Enter your Convex deployment URL"
         }
       ]
     },
-
     {
-      "title": "Polar",
-      "description": "Polar is a billing platform that provides subscription management and billing.",
-      "instructions": "Create an account at https://polar.sh/, set up an organization using the `Sell with Polar` button. Finally, switch sandbox mode to to get the right env variables, or go here: https://sandbox.polar.sh/dashboard/create for billing and obtain your access token and organization ID.",
+      "title": "💳 Polar Integration",
+      "description": "Set up subscription and billing with Polar",
+      "instructions": [
+        "1. Create an account at https://polar.sh",
+        "2. Click 'Sell with Polar' to set up your organization",
+        "3. For testing, use https://sandbox.polar.sh/dashboard/create",
+        "4. Gather your credentials from the dashboard"
+      ],
       "variables": [
         {
           "name": "POLAR_ORGANIZATION_ID",
           "projects": ["convex", "web", "app"],
-          "details": "Generate an Organization ID in the Polar dashboard under 'Settings' > 'General' > 'Organization'. Copy the ID and paste it here."
+          "details": "Found in Settings > General > Organization",
+          "prompt": "Enter your Polar Organization ID"
         },
         {
           "name": "POLAR_ACCESS_TOKEN",
           "projects": ["convex", "web", "app"],
-          "details": "Generate an Organization Access Token in the Polar dashboard under 'Settings' > 'General' > 'Developers'. Required permissions: 'checkouts:read', 'checkouts:write', 'products:read', 'products:write', 'subscriptions:read', 'subscriptions:write', 'customers:read', 'customers:write', 'checkout_links:read', 'checkout_links:write', 'customer_portal:read', 'customer_portal:write', 'customer_sessions:write'."
+          "details": "Generate this token in Settings > General > Developers\nRequired permissions:\n- checkouts (read/write)\n- products (read/write)\n- subscriptions (read/write)\n- customers (read/write)\n- checkout_links (read/write)\n- customer_portal (read/write)\n- customer_sessions (write)",
+          "prompt": "Enter your Polar Access Token"
         },
         {
           "name": "POLAR_WEBHOOK_SECRET",
           "projects": ["convex", "web", "app"],
-          "details": "Create a webhook in the Polar dashboard under 'Settings' > 'Webhooks'. The payload format should be 'Raw'. Events to select are product.created, product.updated, subscription.created and subscription.updated. You can provide your own secret or use the 'Generate' option. Copy the secret and paste it here.",
-          "info": [
-            "Use this as your webhook URL: {{convexSiteUrl}}/polar/events"
-          ]
+          "details": "Create in Settings > Webhooks\nPayload format: Raw\nRequired events:\n- product.created/updated\n- subscription.created/updated",
+          "info": ["Webhook URL: {{convexSiteUrl}}/payments/webhook"],
+          "prompt": "Enter your Polar Webhook Secret"
         }
       ],
       "additionalInstructions": [
-        "The url above uses the Sandbox environment for testing purposes."
+        "Note: The sandbox environment is recommended for initial testing"
       ]
     },
-
     {
-      "title": "Resend",
-      "description": "Resend is a transactional email platform used to handle subscription related emails in the app.",
-      "instructions": "Create an account at https://resend.com and get your API key.",
+      "title": "📧 Resend Email Service",
+      "description": "Configure email notifications and verification",
+      "instructions": [
+        "1. Sign up at https://resend.com",
+        "2. Generate an API key from the dashboard",
+        "3. Verify your domain for sender email"
+      ],
       "variables": [
         {
           "name": "AUTH_RESEND_KEY",
           "projects": ["convex"],
-          "details": "Find your API key in the Resend dashboard under 'API Keys'. It starts with 're_'."
+          "details": "Your API key from Resend dashboard > API Keys (starts with 're_')",
+          "prompt": "Enter your Resend API key"
         },
         {
           "name": "AUTH_RESEND_SENDER_EMAIL",
           "projects": ["convex"],
-          "details": "This should be the email address you want to use as the sender for authentication emails. Make sure it's verified in your Resend account under 'Domains'. If not provided, you'll only be able to send emails to the address on your Resend account.",
-          "required": false
+          "details": "The email address you'll use to send verification emails. Must be verified in your Resend account.",
+          "required": false,
+          "prompt": "Enter your sender email address (optional)"
         }
       ],
       "required": false,
-      "requiredMessage": "Resend is required for subscription emails, but the app can run initially without it for testing purposes."
+      "requiredMessage": "Email functionality will be limited until Resend is configured."
     }
   ]
 }
