@@ -1,5 +1,5 @@
 {
-  "introMessage": "Welcome to the Workspace Management Platform setup!\n\nLet's configure your development environment step by step.",
+  "introMessage": "Welcome to the Convex + Turborepo + Next.js Starter Setup!\n\nThis guide will help you configure your development environment with all the essential integrations for building modern full-stack applications.",
   "projects": [
     {
       "id": "convex",
@@ -15,8 +15,8 @@
   "steps": [
     {
       "title": "\u001b[32m\n📱 Development Environment\u001b[0m\n",
-      "description": "\nConfigure your local development environment\n",
-      "instructions": "\nThis URL is used for local development and OAuth callback URLs. \nKeep the default unless you have a custom port setup.\n",
+      "description": "\nSet up your local development environment\n",
+      "instructions": "\nThis URL serves as the base URL for:\n- Local development server\n- Authentication callbacks\n- API endpoints\nKeep the default unless you have a custom port configuration.\n",
       "variables": [
         {
           "name": "NEXT_PUBLIC_APP_URL",
@@ -28,15 +28,21 @@
     },
     {
       "title": "\u001b[32m🔌 Convex Setup\u001b[0m\n",
-      "description": "Set up your real-time backend for workspace collaboration\n",
+      "description": "Configure your Convex backend for real-time features\n",
       "instructions": [
-        "1. Visit \u001b[34mhttps://dashboard.convex.dev\u001b[0m and create an account\n",
-        "2. Create a new project named after your workspace (e.g., 'workspace-manager')\n",
-        "3. In the project dashboard:\n",
-        "   - Go to Settings > URL & Deploy Key\n",
-        "   - Copy your unique deployment URL\n",
+        "1. Visit \u001b[34mhttps://dashboard.convex.dev\u001b[0m to create your account\n",
+        "2. Create a new project:\n",
+        "   - Choose a project name\n",
+        "   - Select your preferred region\n",
+        "3. In your project dashboard:\n",
+        "   - Navigate to Settings > URL & Deploy Key\n",
+        "   - Copy your deployment URL\n",
         "   - Example: \u001b[34mhttps://example-123.convex.cloud\u001b[0m\n",
-        "4. This URL will power your real-time data sync and authentication\n"
+        "4. This URL enables:\n",
+        "   - Real-time data sync\n",
+        "   - Backend functions\n",
+        "   - Authentication\n",
+        "   - Database access\n"
       ],
       "variables": [
         {
@@ -49,26 +55,26 @@
     },
     {
       "title": "\u001b[32m🔑 GitHub Authentication\u001b[0m\n",
-      "description": "Enable secure workspace access with GitHub authentication\n",
+      "description": "Set up GitHub OAuth for user authentication\n",
       "instructions": [
-        "1. Go to \u001b[34mhttps://github.com/settings/developers\u001b[0m\n",
-        "2. Click 'New OAuth App'\n",
-        "3. Configure your application:\n",
-        "   - Name: Your Project Name\n",
+        "1. Navigate to \u001b[34mhttps://github.com/settings/developers\u001b[0m\n",
+        "2. Click 'New OAuth App' to register\n",
+        "3. Configure your OAuth application:\n",
+        "   - Application Name: Your App Name\n",
         "   - Homepage URL: \u001b[34mhttp://localhost:3000/\u001b[0m\n",
-        "   - Authorization callback URL: Copy the following: \n",
+        "   - Authorization callback URL (copy exactly): \n",
         "   - \u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n",
         "4. After registration:\n",
         "   - Save your Client ID\n",
         "   - Generate and save your Client Secret\n",
-        "   - These credentials will enable secure user authentication\n"
+        "   \u001b[33m⚠️  Keep these credentials secure and never commit them!\u001b[0m\n"
       ],
       "variables": [
         {
           "name": "AUTH_GITHUB_ID",
           "projects": ["convex"],
           "info": [
-            "Use this as your authorized redirect URI:",
+            "Required callback URL (copy exactly):",
             "\u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n"
           ]
         },
@@ -80,30 +86,30 @@
     },
     {
       "title": "\u001b[32m💳 Polar Integration\u001b[0m\n",
-      "description": "Configure Polar for workspace subscription handling\n",
+      "description": "Set up Polar for handling subscriptions and payments\n",
       "instructions": [
-        "1. Create your account at \u001b[34mhttps://polar.sh\u001b[0m\n",
-        "2. Set up your organization:\n",
-        "   - Click 'Sell with Polar'\n",
+        "1. Create your Polar account at \u001b[34mhttps://polar.sh\u001b[0m\n",
+        "2. Configure your organization:\n",
+        "   - Select 'Sell with Polar'\n",
         "   - For development: Use \u001b[34mhttps://sandbox.polar.sh/dashboard/create\u001b[0m\n",
-        "3. Configure your integration:\n",
-        "   - Organization ID: Settings > General > Organization\n",
-        "   - Access Token: Settings > Developers (enable all permissions)\n",
-        "   - Webhook: Settings > Webhooks\n",
-        "     • URL: \u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m\n",
-        "     • Events: Select all subscription and payment events\n",
-        "     • Format: Raw\n",
-        "4. Create a new product in Polar\n",
-        "   - Go to \u001b[34mhttps://sandbox.polar.sh\u001b[0m\n",
-        "   - In Products > Catalogue Click 'New Product'\n",
-        "   - Fill in the product details:\n",
-        "     • Name: e.g. Pro \n",
-        "     • Description: e.g. Product description \n",
-        "     • Pricing: e.g. Fill out the details \n",
-        "     • Automated Benefits: Select Custom > Create New then fill out the description \n",
-        "   \u001b[33m⚠️  Make sure to create at least one product before continuing!\u001b[0m\n",
-        "   Press Enter when you have finished creating your product.\n",
-        "5. These settings will enable workspace subscription management\n"
+        "3. Set up your integration:\n",
+        "   - Organization ID: Find in Settings > General > Organization\n",
+        "   - Access Token: Generate in Settings > Developers (all permissions)\n",
+        "   - Webhook Configuration:\n",
+        "     • Webhook URL: \u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m\n",
+        "     • Required Events: All subscription and payment events\n",
+        "     • Format: Select Raw\n",
+        "4. Create a subscription product:\n",
+        "   - Access \u001b[34mhttps://sandbox.polar.sh\u001b[0m\n",
+        "   - Go to Products > Catalogue > New Product\n",
+        "   - Configure your product:\n",
+        "     • Name: Your product name\n",
+        "     • Description: Product features\n",
+        "     • Pricing: Set your pricing tiers\n",
+        "     • Benefits: Add product benefits\n",
+        "   \u001b[33m⚠️  Important: Create at least one product before continuing!\u001b[0m\n",
+        "   Press Enter once you've set up your product.\n",
+        "5. This completes your payment integration setup\n"
       ],
       "variables": [
         {
@@ -118,28 +124,30 @@
           "name": "POLAR_WEBHOOK_SECRET",
           "projects": ["convex", "web"],
           "info": [
-            "Use this as your authorized redirect URI: \u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m"
+            "Webhook endpoint (copy exactly):",
+            "\u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m"
           ]
         }
       ],
       "additionalInstructions": [
-        "Use sandbox mode for testing workspace subscription features\n"
+        "Note: Use sandbox mode for testing to avoid real transactions\n"
       ]
     },
     {
       "title": "\u001b[32m📧 Resend Email Service\u001b[0m\n",
-      "description": "Set up Resend for workspace notifications and invites\n",
+      "description": "Set up Resend for email authentication\n",
       "instructions": [
-        "1. Sign up at \u001b[34mhttps://resend.com\u001b[0m\n",
-        "2. Configure your API access:\n",
-        "   - Go to API Keys\n",
-        "   - Create a new key (starts with 're_')\n",
-        "3. Set up email sending:\n",
-        "   - Add and verify your domain in Settings\n",
-        "   - Or use the sandbox domain for testing\n",
-        "4. This will enable:\n",
-        "   - OTPs Sign In\n",
-        "   - Send Verification Code\n"
+        "1. Create your account at \u001b[34mhttps://resend.com\u001b[0m\n",
+        "2. Set up API access:\n",
+        "   - Navigate to API Keys section\n",
+        "   - Generate a new API key (format: 're_...')\n",
+        "   \u001b[33m⚠️  Store your API key securely\u001b[0m\n",
+        "3. Configure email sending:\n",
+        "   - Option 1: Add and verify your domain (recommended)\n",
+        "   - Option 2: Use sandbox domain for development\n",
+        "4. This enables:\n",
+        "   - OTP authentication\n",
+        "   - Email verification\n"
       ],
       "variables": [
         {
@@ -153,7 +161,7 @@
         }
       ],
       "required": false,
-      "requiredMessage": "Email notifications for workspaces will be disabled until configured\n"
+      "requiredMessage": "Note: Email authentication requires Resend configuration\n"
     }
   ]
 }
