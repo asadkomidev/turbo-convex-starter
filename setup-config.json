@@ -35,7 +35,7 @@
         "3. In the project dashboard:\n",
         "   - Go to Settings > URL & Deploy Key\n",
         "   - Copy your unique deployment URL\n",
-        "   - Format: \u001b[34mhttps://[project-id].convex.cloud\u001b[0m\n",
+        "   - Example: \u001b[34mhttps://example-123.convex.cloud\u001b[0m\n",
         "4. This URL will power your real-time data sync and authentication\n"
       ],
       "variables": [
@@ -54,9 +54,10 @@
         "1. Go to \u001b[34mhttps://github.com/settings/developers\u001b[0m\n",
         "2. Click 'New OAuth App'\n",
         "3. Configure your application:\n",
-        "   - Name: Your Workspace Manager\n",
-        "   - Homepage URL: \u001b[34m{{NEXT_PUBLIC_APP_URL}}\u001b[0m\n",
-        "   - Authorization callback URL: \u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n",
+        "   - Name: Your Project Name\n",
+        "   - Homepage URL: \u001b[34mhttp://localhost:3000/\u001b[0m\n",
+        "   - Authorization callback URL: Copy the following: \n",
+        "   - \u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n",
         "4. After registration:\n",
         "   - Save your Client ID\n",
         "   - Generate and save your Client Secret\n",
@@ -67,7 +68,8 @@
           "name": "AUTH_GITHUB_ID",
           "projects": ["convex"],
           "info": [
-            "Use this as your authorized redirect URI: \u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m"
+            "Use this as your authorized redirect URI:",
+            "\u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n"
           ]
         },
         {
@@ -91,7 +93,17 @@
         "     • URL: \u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m\n",
         "     • Events: Select all subscription and payment events\n",
         "     • Format: Raw\n",
-        "4. These settings will enable workspace subscription management\n"
+        "4. Create a new product in Polar\n",
+        "   - Go to \u001b[34mhttps://sandbox.polar.sh\u001b[0m\n",
+        "   - In Products > Catalogue Click 'New Product'\n",
+        "   - Fill in the product details:\n",
+        "     • Name: e.g. Pro \n",
+        "     • Description: e.g. Product description \n",
+        "     • Pricing: e.g. Fill out the details \n",
+        "     • Automated Benefits: Select Custom > Create New then fill out the description \n",
+        "   \u001b[33m⚠️  Make sure to create at least one product before continuing!\u001b[0m\n",
+        "   Press Enter when you have finished creating your product.\n",
+        "5. These settings will enable workspace subscription management\n"
       ],
       "variables": [
         {
@@ -126,9 +138,8 @@
         "   - Add and verify your domain in Settings\n",
         "   - Or use the sandbox domain for testing\n",
         "4. This will enable:\n",
-        "   - Workspace invitation emails\n",
-        "   - Task notifications\n",
-        "   - Subscription updates\n"
+        "   - OTPs Sign In\n",
+        "   - Send Verification Code\n"
       ],
       "variables": [
         {
