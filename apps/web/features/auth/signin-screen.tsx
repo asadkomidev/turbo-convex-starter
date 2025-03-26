@@ -30,7 +30,7 @@ export const SignInScreen = ({ modal }: SignInScreenProps) => {
     >
       <div className="w-full pb-4">
         <Link href="/" aria-label="go home">
-          <Logo />
+          <Logo className="w-10 h-10" />
         </Link>
         <h1 className="mb-1 mt-4 text-lg font-semibold">Sign In</h1>
       </div>
