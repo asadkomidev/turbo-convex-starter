@@ -1,5 +1,5 @@
 import { Button } from "@workspace/ui/components/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Github } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -26,11 +26,12 @@ export const AboutSection = () => {
               interfaces quickly. Plus, integrated Polar.sh payments make it
               easy to monetize your application from day one.
             </p>
-            <Button asChild size="sm" className="rounded-xl">
+            <Button asChild size="lg" className="rounded-xl">
               <Link
                 href="https://github.com/asadkomidev/turbo-convex-starter"
                 target="_blank"
               >
+                <Github className="mr-2 size-4" />
                 <span>View on GitHub</span>
                 <ChevronRight className="size-3" />
               </Link>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@workspace/ui/components/button";
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { Github, Star } from "lucide-react";
 
 export const CTASection = () => {
   return (
@@ -31,7 +31,8 @@ export const CTASection = () => {
                 href="https://github.com/asadkomidev/turbo-convex-starter"
                 target="_blank"
               >
-                <span>Read Documentation</span>
+                <Star className="mr-2 size-4 text-green-500" />
+                <span>Leave a Star</span>
               </Link>
             </Button>
           </div>
