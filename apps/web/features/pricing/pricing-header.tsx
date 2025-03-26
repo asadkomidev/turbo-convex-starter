@@ -13,7 +13,7 @@ export const PricingHeader = ({ title, subtitle }: PricingHeaderProps) => {
       <h1 className="text-center text-4xl font-semibold lg:text-5xl">
         {title}
       </h1>
-      <p>{subtitle}</p>
+      <p className="text-muted-foreground">{subtitle}</p>
     </div>
   );
 };

@@ -49,7 +49,8 @@ export const Navbar = ({ user, isSubscribed }: NavbarProps) => {
         <Container className="w-full">
           <div className="relative flex items-center justify-between py-3">
             <LeftMenu />
-            <CenterMenu />
+            {/* <CenterMenu /> */}
+            <div className=""></div>
             <RightMenu user={user} hasAccess={isSubscribed} />
           </div>
           <MobileMenu user={user} isOpen={menuState} onToggle={toggleMenu} />

@@ -7,66 +7,76 @@ export const FAQsSection = () => {
         <div className="grid gap-y-12 px-2 lg:[grid-template-columns:1fr_auto]">
           <div className="text-center lg:text-left">
             <h2 className="mb-4 text-3xl font-semibold md:text-4xl">
-              Frequently <br className="hidden lg:block" /> Asked{" "}
+              Common <br className="hidden lg:block" /> Questions{" "}
               <br className="hidden lg:block" />
-              Questions
+              Answered
             </h2>
-            <p>Accusantium quisquam. Illo, omnis?</p>
+            <p className="text-muted-foreground">
+              Everything you need to know about our starter kit
+            </p>
           </div>
 
           <div className="divide-y divide-dashed sm:mx-auto sm:max-w-lg lg:mx-0">
             <div className="pb-6">
-              <h3 className="font-medium">What is the refund policy?</h3>
+              <h3 className="font-medium">What technologies are included?</h3>
               <p className="text-muted-foreground mt-4">
-                We offer a 30-day money back guarantee. If you are not satisfied
-                with our product, you can request a refund within 30 days of
-                your purchase.
+                Our starter kit includes a powerful modern stack:
               </p>
 
-              <ol className="list-outside list-decimal space-y-2 pl-4">
-                <li className="text-muted-foreground mt-4">
-                  To request a refund, please contact our support team with your
-                  order number and reason for the refund.
-                </li>
-                <li className="text-muted-foreground mt-4">
-                  Refunds will be processed within 3-5 business days.
-                </li>
-                <li className="text-muted-foreground mt-4">
-                  Please note that refunds are only available for new customers
-                  and are limited to one per customer.
-                </li>
-              </ol>
-            </div>
-            <div className="py-6">
-              <h3 className="font-medium">How do I cancel my subscription?</h3>
-              <p className="text-muted-foreground mt-4">
-                You can cancel your subscription at any time by logging into
-                your account and clicking on the cancel button.
-              </p>
-            </div>
-            <div className="py-6">
-              <h3 className="font-medium">Can I upgrade my plan?</h3>
-              <p className="text-muted-foreground my-4">
-                Yes, you can upgrade your plan at any time by logging into your
-                account and selecting the plan you want to upgrade to.
-              </p>
               <ul className="list-outside list-disc space-y-2 pl-4">
-                <li className="text-muted-foreground">
-                  You will be charged the difference in price between your
-                  current plan and the plan you are upgrading to.
+                <li className="text-muted-foreground mt-4">
+                  Turborepo for monorepo management and build optimization
                 </li>
-                <li className="text-muted-foreground">
-                  Your new plan will take effect immediately and you will be
-                  billed at the new rate on your next billing cycle.
+                <li className="text-muted-foreground mt-4">
+                  Next.js 14 with App Router for React applications
+                </li>
+                <li className="text-muted-foreground mt-4">
+                  Convex for real-time backend and state management
+                </li>
+                <li className="text-muted-foreground mt-4">
+                  Shadcn/UI and TailwindCSS for beautiful, responsive UI
+                </li>
+                <li className="text-muted-foreground mt-4">
+                  Polar.sh for integrated payments and subscriptions
                 </li>
               </ul>
             </div>
             <div className="py-6">
-              <h3 className="font-medium">Do you offer phone support?</h3>
+              <h3 className="font-medium">How is the monorepo structured?</h3>
               <p className="text-muted-foreground mt-4">
-                We do not offer phone support at this time. However, you can
-                contact us via email or live chat for any questions or concerns
-                you may have.
+                The monorepo is organized into apps and packages. Apps contain
+                your Next.js applications, while packages contain shared UI
+                components, utilities, and configurations that can be reused
+                across apps.
+              </p>
+            </div>
+            <div className="py-6">
+              <h3 className="font-medium">
+                How do I handle authentication and data?
+              </h3>
+              <p className="text-muted-foreground my-4">
+                Authentication and data management are handled through Convex,
+                which provides:
+              </p>
+              <ul className="list-outside list-disc space-y-2 pl-4">
+                <li className="text-muted-foreground">
+                  Built-in authentication with multiple providers
+                </li>
+                <li className="text-muted-foreground">
+                  Real-time data synchronization across clients
+                </li>
+                <li className="text-muted-foreground">
+                  Automatic cache invalidation and optimistic updates
+                </li>
+              </ul>
+            </div>
+            <div className="py-6">
+              <h3 className="font-medium">How do I process payments?</h3>
+              <p className="text-muted-foreground mt-4">
+                Payments are handled through Polar.sh, which provides a complete
+                payment infrastructure. You can easily set up subscriptions,
+                process one-time payments, and manage customer billing through
+                their dashboard.
               </p>
             </div>
           </div>

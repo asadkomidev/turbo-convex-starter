@@ -11,7 +11,7 @@ export const LeftMenu = () => {
         aria-label="Go to homepage"
         className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary"
       >
-        <Logo />
+        <Logo className="w-6 h-6" />
       </Link>
     </div>
   );

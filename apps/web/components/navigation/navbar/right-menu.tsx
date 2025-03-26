@@ -7,6 +7,8 @@ import { Button } from "@workspace/ui/components/button";
 import { User } from "@/config/types";
 import { UserMenu } from "@/components/shared/user-menu";
 import { useLogin } from "@/features/auth/hooks/use-login";
+import GithubIcon from "@/components/icons/github-icon";
+import XIcon from "@/components/icons/x-icon";
 
 interface RightMenuProps {
   user: User | null;
@@ -48,6 +50,22 @@ const GetStartedButton = ({
   </Button>
 );
 
+const GithubButton = () => (
+  <Link
+    href="https://github.com/asadkomidev/turbo-convex-starter"
+    target="_blank"
+    aria-label="Go to GitHub"
+  >
+    <GithubIcon />
+  </Link>
+);
+
+const XButton = () => (
+  <Link href="https://x.com/AsadKomi" target="_blank" aria-label="Go to X">
+    <XIcon />
+  </Link>
+);
+
 export const RightMenu = ({ user, hasAccess }: RightMenuProps) => {
   const handlePricingScroll = React.useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -65,6 +83,8 @@ export const RightMenu = ({ user, hasAccess }: RightMenuProps) => {
       className="hidden lg:flex items-center gap-4 w-full justify-end"
       aria-label="User navigation"
     >
+      <GithubButton />
+      <XButton />
       {!user && <LoginButton />}
 
       {user && (

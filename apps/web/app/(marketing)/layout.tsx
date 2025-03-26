@@ -6,11 +6,9 @@ import { Metadata } from "next";
 import { JSX } from "react";
 import { auth } from "@/actions/auth";
 import { hasAccess } from "@/actions/subscription";
-import { redirect } from "next/navigation";
 
-// TODO: Update metadata Image
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nextstarter.xyz/"),
+  metadataBase: new URL("https://turbo-convex-starter-web.vercel.app/"),
   title: {
     default: "Turbo Convex Starter",
     template: `%s | Turbo Convex Starter`,
@@ -21,9 +19,9 @@ export const metadata: Metadata = {
     description:
       "The Ultimate SaaS Starter Kit built with Convex, Turborepo, and Next.js",
     images: [
-      "https://dwdwn8b5ye.ufs.sh/f/MD2AM9SEY8GucGJl7b5qyE7FjNDKYduLOG2QHWh3f5RgSi0c",
+      "https://necessary-bloodhound-36.convex.cloud/api/storage/ad406632-eabb-4b58-a28b-3044e5ef3f3a",
     ],
-    url: "https://nextstarter.xyz/",
+    url: "https://turbo-convex-starter-web.vercel.app/",
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +32,7 @@ export const metadata: Metadata = {
     creator: "@asadkomi",
     creatorId: "",
     images: [
-      "https://dwdwn8b5ye.ufs.sh/f/MD2AM9SEY8GucGJl7b5qyE7FjNDKYduLOG2QHWh3f5RgSi0c",
+      "https://necessary-bloodhound-36.convex.cloud/api/storage/ad406632-eabb-4b58-a28b-3044e5ef3f3a",
     ],
   },
 };
@@ -46,10 +44,6 @@ export default async function Layout({
 }): Promise<JSX.Element> {
   const user = await auth();
   const isSubscribed = await hasAccess();
-
-  // if (user) {
-  //   redirect("/dashboard");
-  // }
 
   return (
     <LayoutProvider>

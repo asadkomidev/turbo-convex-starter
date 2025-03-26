@@ -10,6 +10,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "necessary-bloodhound-36.convex",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "avatars.githubusercontent.com",
         pathname: "**",
       },

@@ -74,7 +74,7 @@ const UserSection = ({ user }: UserSectionProps) => (
         </div>
       </li>
     </ul>
-    <Separator />
+    {/* <Separator /> */}
   </>
 );
 
@@ -115,7 +115,7 @@ export const MobileMenu = ({ user, isOpen, onToggle }: MobileMenuProps) => {
       >
         <div className="lg:hidden space-y-6">
           {user && <UserSection user={user} onSignOut={handleSignOut} />}
-          <MenuItems />
+          {/* <MenuItems /> */}
           <div className="space-y-3">
             {!user && (
               <Button asChild variant="outline" size="sm" className="w-full">
