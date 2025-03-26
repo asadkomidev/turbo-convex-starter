@@ -161,7 +161,7 @@
         }
       ],
       "required": false,
-      "requiredMessage": "Note: Email authentication requires Resend configuration\n"
+      "requiredMessage": "Email authentication requires Resend configuration\n"
     }
   ]
 }
