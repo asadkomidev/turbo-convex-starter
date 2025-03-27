@@ -26,6 +26,8 @@ import { PhoneInput, phoneSchema } from "@workspace/ui/components/phone-input";
 import { useAction, useMutation } from "convex/react";
 import { Id } from "@workspace/backend/convex/_generated/dataModel";
 
+import logger from "@/lib/debux";
+
 const profileSchema = z.object({
   title: z.string(),
   location: z.string(),
@@ -58,16 +60,18 @@ export const AccountForm: FC = () => {
 
   async function onProfileSubmit(data: z.infer<typeof profileSchema>) {
     try {
-      await updateProfile({
-        ...data,
-        imageId: (storageId as Id<"_storage">) || userProfile?.imageId,
-      });
+      throw new Error("Failed to update profile");
+      // await updateProfile({
+      //   ...data,
+      //   imageId: (storageId as Id<"_storage">) || userProfile?.imageId,
+      // });
 
-      toast.success("Profile updated successfully");
-      setOpenAccount(false);
-      setStorageId(null);
+      // toast.success("Profile updated successfully");
+      // setOpenAccount(false);
+      // setStorageId(null);
     } catch (error) {
       toast.error("Failed to update profile");
+      logger.reportError(error as Error, { userId: "123" });
     }
   }
 
