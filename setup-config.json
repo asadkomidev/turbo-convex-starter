@@ -48,7 +48,7 @@
         {
           "name": "NEXT_PUBLIC_CONVEX_URL",
           "projects": ["web"],
-          "template": "{{convexUrl}}",
+          "template": "{{convexSiteUrl}}",
           "defaultValue": "\u001b[34mhttps://example-123.convex.cloud\u001b[0m"
         }
       ]
@@ -63,7 +63,7 @@
         "   - Application Name: Your App Name\n",
         "   - Homepage URL: \u001b[34mhttp://localhost:3000/\u001b[0m\n",
         "   - Authorization callback URL (copy exactly): \n",
-        "   - \u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n",
+        "   - \u001b[34m{{convexSiteUrl}}/api/auth/callback/github\u001b[0m\n",
         "4. After registration:\n",
         "   - Save your Client ID\n",
         "   - Generate and save your Client Secret\n",
@@ -75,7 +75,7 @@
           "projects": ["convex"],
           "info": [
             "Required callback URL (copy exactly):",
-            "\u001b[34m{{convexSiteUrl}}/api/auth/github/callback\u001b[0m\n"
+            "\u001b[34m{{convexSiteUrl}}/api/auth/callback/github\u001b[0m\n"
           ]
         },
         {
