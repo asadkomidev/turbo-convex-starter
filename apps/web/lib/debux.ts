@@ -1,6 +1,6 @@
 import { Logger } from "@debux/sdk";
 
-const logger = new Logger("your-api-key", {
+const logger = new Logger("api-key", {
   environment: "development", // Optional: defaults to 'production' // Optional: defaults to predefined URL
 });
 
