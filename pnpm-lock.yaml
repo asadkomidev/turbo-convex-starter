@@ -52,8 +52,8 @@ importers:
         specifier: ^0.0.80
         version: 0.0.80(@auth/core@0.37.0)(convex@1.21.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@debux/sdk':
-        specifier: ^1.0.2
-        version: 1.0.2
+        specifier: ^1.0.3
+        version: 1.0.3
       '@hookform/resolvers':
         specifier: ^4.1.3
         version: 4.1.3(react-hook-form@7.54.2(react@19.0.0))
@@ -441,8 +441,8 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@debux/sdk@1.0.2':
-    resolution: {integrity: sha512-exxq0DsKSTsmR9ufGXa7jhGUe+/boYL+0ceyvsWfC4B9HO2/nG9F/3BXB2gsNT1EDnZL7+neNKucHS/+BOkxIA==}
+  '@debux/sdk@1.0.3':
+    resolution: {integrity: sha512-DoPeqLuVHEa13vIGg+GnN/TvcuWs5BofDwfEenamM8LvEepp7Y6BiwiO0egwy8VtWpgdrfPgUSWoBm2YNnel+A==}
 
   '@emnapi/core@0.45.0':
     resolution: {integrity: sha512-DPWjcUDQkCeEM4VnljEOEcXdAD7pp8zSZsgOujk/LGIwCXWbXJngin+MO4zbH429lzeC3WbYLGjE2MaUOwzpyw==}
@@ -4564,7 +4564,7 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@debux/sdk@1.0.2':
+  '@debux/sdk@1.0.3':
     dependencies:
       cross-fetch: 4.1.0
     transitivePeerDependencies:
