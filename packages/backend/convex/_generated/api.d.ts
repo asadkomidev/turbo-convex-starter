@@ -18,6 +18,7 @@ import type * as config_constants from "../config/constants.js";
 import type * as config_polar from "../config/polar.js";
 import type * as config_types from "../config/types.js";
 import type * as config from "../config.js";
+import type * as debux from "../debux.js";
 import type * as emails_ResendOTP from "../emails/ResendOTP.js";
 import type * as emails_SigninEmail from "../emails/SigninEmail.js";
 import type * as emails_templates_verification from "../emails/templates/verification.js";
@@ -51,6 +52,7 @@ declare const fullApi: ApiFromModules<{
   "config/polar": typeof config_polar;
   "config/types": typeof config_types;
   config: typeof config;
+  debux: typeof debux;
   "emails/ResendOTP": typeof emails_ResendOTP;
   "emails/SigninEmail": typeof emails_SigninEmail;
   "emails/templates/verification": typeof emails_templates_verification;

@@ -60,28 +60,16 @@ export const AccountForm: FC = () => {
 
   async function onProfileSubmit(data: z.infer<typeof profileSchema>) {
     try {
-      throw new Error("Failed to update profile");
-      // await updateProfile({
-      //   ...data,
-      //   imageId: (storageId as Id<"_storage">) || userProfile?.imageId,
-      // });
+      await updateProfile({
+        ...data,
+        imageId: (storageId as Id<"_storage">) || userProfile?.imageId,
+      });
 
-      // toast.success("Profile updated successfully");
-      // setOpenAccount(false);
-      // setStorageId(null);
+      toast.success("Profile updated successfully");
+      setOpenAccount(false);
+      setStorageId(null);
     } catch (error) {
       toast.error("Failed to update profile");
-      try {
-        await logger.reportError(error as Error, {
-          userId: "123",
-          // Add more context if available
-          timestamp: new Date().toISOString(),
-          page: window.location.pathname,
-        });
-      } catch (loggingError) {
-        console.error("Failed to log error:", loggingError);
-        // Optional: Add fallback logging mechanism
-      }
     }
   }
 
