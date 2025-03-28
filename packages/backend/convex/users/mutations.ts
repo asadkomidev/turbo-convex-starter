@@ -2,7 +2,6 @@ import { ConvexError, v } from "convex/values";
 import { mutation } from "../_generated/server";
 
 import { getUserId } from "../helpers/common";
-import logger from "../debux";
 
 export const deleteImage = mutation({
   args: {
@@ -36,17 +35,15 @@ export const updateProfile = mutation({
   },
   handler: async (ctx, args) => {
     try {
-      throw new Error("Not implemented");
-      // const userId = await getUserId(ctx);
-      // if (!userId) {
-      //   throw new ConvexError("Unauthorized");
-      // }
+      const userId = await getUserId(ctx);
+      if (!userId) {
+        throw new ConvexError("Unauthorized");
+      }
 
-      // await ctx.db.patch(userId, args);
+      await ctx.db.patch(userId, args);
 
-      // return userId;
+      return userId;
     } catch (error) {
-      logger.reportError(error as Error);
       throw error;
     }
   },
