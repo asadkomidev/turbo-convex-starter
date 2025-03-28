@@ -71,7 +71,17 @@ export const AccountForm: FC = () => {
       // setStorageId(null);
     } catch (error) {
       toast.error("Failed to update profile");
-      logger.reportError(error as Error, { userId: "123" });
+      try {
+        await logger.reportError(error as Error, {
+          userId: "123",
+          // Add more context if available
+          timestamp: new Date().toISOString(),
+          page: window.location.pathname,
+        });
+      } catch (loggingError) {
+        console.error("Failed to log error:", loggingError);
+        // Optional: Add fallback logging mechanism
+      }
     }
   }
 
