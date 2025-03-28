@@ -1,5 +1,6 @@
 import { ConvexError, v } from "convex/values";
 import { action } from "../_generated/server";
+import logger from "../debux";
 
 import { api, internal } from "../_generated/api";
 
@@ -50,21 +51,30 @@ export const updateUserProfileAction = action({
     phone: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const userId = await getUserId(ctx);
-    if (!userId) {
-      throw new ConvexError("Unauthorized");
+    try {
+      const userId = await getUserId(ctx);
+      if (!userId) {
+        throw new ConvexError("Unauthorized");
+      }
+
+      const user = await ctx.runQuery(api.users.queries.getUser, {
+        userId,
+      });
+
+      if (!user) {
+        throw new ConvexError("User not found");
+      }
+
+      const result = await ctx.runMutation(api.users.mutations.updateProfile, {
+        ...args,
+      });
+
+      if (!result) {
+        throw new ConvexError("Failed to update user profile");
+      }
+    } catch (error) {
+      logger.reportError(error as Error);
+      throw new ConvexError("Failed to update user profile");
     }
-
-    const user = await ctx.runQuery(api.users.queries.getUser, {
-      userId,
-    });
-
-    if (!user) {
-      throw new ConvexError("User not found");
-    }
-
-    await ctx.runMutation(api.users.mutations.updateProfile, {
-      ...args,
-    });
   },
 });
