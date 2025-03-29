@@ -1,7 +1,6 @@
-import { Logger } from "@debux/sdk";
+import Debux from "@debux/sdk";
 
-const logger = new Logger("api-key", {
-  environment: "development", // Optional: defaults to 'production' // Optional: defaults to predefined URL
+export const debux = new Debux({
+  apiKey: "api-key",
+  environment: "development",
 });
-
-export default logger;

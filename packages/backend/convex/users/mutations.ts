@@ -35,14 +35,16 @@ export const updateProfile = mutation({
   },
   handler: async (ctx, args) => {
     try {
-      const userId = await getUserId(ctx);
-      if (!userId) {
-        throw new ConvexError("Unauthorized");
-      }
+      // const userId = await getUserId(ctx);
+      // if (!userId) {
+      //   throw new ConvexError("Unauthorized");
+      // }
 
-      await ctx.db.patch(userId, args);
+      // await ctx.db.patch(userId, args);
 
-      return userId;
+      // return userId;
+
+      throw new Error("Not implemented from mutations");
     } catch (error) {
       throw error;
     }

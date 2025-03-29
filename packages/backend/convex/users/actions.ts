@@ -1,6 +1,6 @@
 import { ConvexError, v } from "convex/values";
 import { action } from "../_generated/server";
-import logger from "../debux";
+import { debux } from "../debux";
 
 import { api, internal } from "../_generated/api";
 
@@ -73,7 +73,9 @@ export const updateUserProfileAction = action({
         throw new ConvexError("Failed to update user profile");
       }
     } catch (error) {
-      logger.reportError(error as Error);
+      await debux.report(error as Error, {
+        severity: "critical",
+      });
       throw new ConvexError("Failed to update user profile");
     }
   },
