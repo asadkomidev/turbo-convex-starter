@@ -8,26 +8,20 @@ import { FeaturesSection } from "../sections/home/features-section";
 import { FAQsSection } from "../sections/home/faqs-section";
 import { CTASection } from "../sections/home/cta-section";
 import { Pricing } from "@/features/pricing/pricing";
-import { Product } from "@/config/types";
+import { Product, ProductsResponse } from "@/config/types";
 
 interface PricingProps {
-  result: {
-    items: Product[];
-    pagination: {
-      totalCount: number;
-      maxPage: number;
-    };
-  };
+  data: ProductsResponse;
 }
 
-export const HomeScreen = ({ result }: PricingProps) => {
+export const HomeScreen = ({ data }: PricingProps) => {
   return (
     <main className="overflow-hidden">
       <HeroSection />
       <LogosSection />
       <AboutSection />
       <FeaturesSection />
-      <Pricing result={result} />
+      <Pricing data={data} />
       <FAQsSection />
       <CTASection />
     </main>

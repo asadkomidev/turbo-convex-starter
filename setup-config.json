@@ -114,15 +114,15 @@
       "variables": [
         {
           "name": "POLAR_ORGANIZATION_ID",
-          "projects": ["convex", "web"]
+          "projects": ["convex"]
         },
         {
           "name": "POLAR_ACCESS_TOKEN",
-          "projects": ["convex", "web"]
+          "projects": ["convex"]
         },
         {
           "name": "POLAR_WEBHOOK_SECRET",
-          "projects": ["convex", "web"],
+          "projects": ["convex"],
           "info": [
             "Webhook endpoint (copy exactly):",
             "\u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m"

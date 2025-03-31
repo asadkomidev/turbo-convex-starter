@@ -11,6 +11,7 @@ import { api, internal } from "../_generated/api";
 import { Polar } from "@polar-sh/sdk";
 import { polar } from "../config/polar";
 import { getUserDetails, getUserId } from "../helpers/common";
+import { Benefit, Price, Product } from "../config/types";
 
 export const getProOnboardingCheckoutUrl = action({
   args: {
@@ -87,33 +88,53 @@ export const getUserDashboardUrl = action({
 });
 
 export const getPolarProducts = action({
-  handler: async (ctx) => {
-    try {
-      const data = await polar.products.list({
-        organizationId: process.env.POLAR_ORGANIZATION_ID,
-      });
+  args: {},
+  handler: async (
+    ctx
+  ): Promise<{
+    products: Product[];
+    pagination: { totalCount: number; maxPage: number };
+    timestamp: number;
+  }> => {
+    const data = await polar.products.list({
+      organizationId: process.env.POLAR_ORGANIZATION_ID,
+    });
 
-      return {
-        products: data.result.items.map((product: any) => ({
-          id: product.id,
-          name: product.name,
-          description: product.description,
-          prices: product.prices.map((price: any) => ({
+    // Transform and validate the response data
+    const products = data.result.items.map(
+      (product: any): Product => ({
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        recurringInterval: product.recurringInterval,
+        isRecurring: product.isRecurring,
+        prices: product.prices.map(
+          (price: any): Price => ({
             id: price.id,
             priceAmount: price.priceAmount,
             priceCurrency: price.priceCurrency,
             recurringInterval: price.recurringInterval,
-            productId: price.productId,
-          })),
-          benefits: product.benefits.map((benefit: any) => ({
+            type: price.type,
+            amountType: price.amountType,
+          })
+        ),
+        benefits: product.benefits.map(
+          (benefit: any): Benefit => ({
             id: benefit.id,
             description: benefit.description,
-          })),
-        })),
-      };
-    } catch (error) {
-      console.error("Error fetching Polar products:", error);
-      throw new Error("Failed to fetch products from Polar");
-    }
+            type: benefit.type,
+          })
+        ),
+      })
+    );
+
+    return {
+      products,
+      pagination: {
+        totalCount: data.result.pagination.totalCount,
+        maxPage: data.result.pagination.maxPage,
+      },
+      timestamp: Date.now(),
+    };
   },
 });

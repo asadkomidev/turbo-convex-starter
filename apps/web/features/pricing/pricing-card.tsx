@@ -46,7 +46,7 @@ export const PricingCard = ({
   const currentPrice =
     prices.find((price) => price.recurringInterval === "month") || prices[0];
   const priceId = currentPrice?.id;
-  const priceAmount = currentPrice
+  const priceAmount = currentPrice?.priceAmount
     ? (currentPrice.priceAmount / 100).toFixed(0)
     : "0";
   const currency = currentPrice?.priceCurrency?.toUpperCase() || "USD";

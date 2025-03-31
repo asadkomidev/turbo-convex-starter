@@ -151,12 +151,10 @@ export const subscriptionStoreWebhook = mutation({
         break;
 
       case "order.created":
-        console.log("order.created:", args.body);
         // Orders are handled through the subscription events
         break;
 
       default:
-        console.log(`Unhandled event type: ${eventType}`);
         break;
     }
   },

@@ -21,28 +21,34 @@ export type User = Doc<"users"> & {
 
 export type Price = {
   id: string;
-  priceAmount: number;
-  priceCurrency: string;
-  recurringInterval: "month" | "year";
-  productId?: string;
+  priceAmount?: number;
+  priceCurrency?: string;
+  recurringInterval?: string;
+  type: string;
+  amountType: string;
 };
 
 export type Benefit = {
+  id: string;
   description: string;
+  type: string;
 };
 
 export type Product = {
   id: string;
   name: string;
-  description: string | null;
+  description: string;
+  recurringInterval: string;
+  isRecurring: boolean;
   prices: Price[];
   benefits: Benefit[];
-  isRecurring?: boolean;
-  isArchived?: boolean;
-  organizationId?: string;
-  createdAt?: Date;
-  modifiedAt?: Date | null;
-  metadata?: Record<string, any>;
-  medias?: any[];
-  attachedCustomFields?: any[];
+};
+
+export type ProductsResponse = {
+  products: Product[];
+  pagination: {
+    totalCount: number;
+    maxPage: number;
+  };
+  timestamp: number;
 };

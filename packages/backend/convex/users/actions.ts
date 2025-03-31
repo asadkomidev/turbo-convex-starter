@@ -1,6 +1,5 @@
 import { ConvexError, v } from "convex/values";
 import { action } from "../_generated/server";
-import { debux } from "../debux";
 
 import { api, internal } from "../_generated/api";
 
@@ -65,17 +64,10 @@ export const updateUserProfileAction = action({
         throw new ConvexError("User not found");
       }
 
-      const result = await ctx.runMutation(api.users.mutations.updateProfile, {
+      await ctx.runMutation(api.users.mutations.updateProfile, {
         ...args,
       });
-
-      if (!result) {
-        throw new ConvexError("Failed to update user profile");
-      }
     } catch (error) {
-      await debux.report(error as Error, {
-        severity: "critical",
-      });
       throw new ConvexError("Failed to update user profile");
     }
   },

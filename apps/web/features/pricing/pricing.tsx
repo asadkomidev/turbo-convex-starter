@@ -1,25 +1,19 @@
 "use client";
 
-import { Product } from "@/config/types";
+import { ProductsResponse } from "@/config/types";
 import { useUser } from "@/hooks/use-user";
 
 import { PricingHeader } from "./pricing-header";
 import { PricingCard } from "./pricing-card";
 
 interface PricingProps {
-  result: {
-    items: Product[];
-    pagination: {
-      totalCount: number;
-      maxPage: number;
-    };
-  };
+  data: ProductsResponse;
 }
 
-export const Pricing = ({ result }: PricingProps) => {
+export const Pricing = ({ data }: PricingProps) => {
   const { user } = useUser();
 
-  const sortedProducts = result.items.sort((a, b) => {
+  data.products.sort((a, b) => {
     return a.name.localeCompare(b.name);
   });
 
@@ -34,7 +28,7 @@ export const Pricing = ({ result }: PricingProps) => {
         />
 
         <div className="mt-8 grid gap-6 md:mt-20 md:grid-cols-3">
-          {sortedProducts.map((item) => (
+          {data.products.map((item) => (
             <PricingCard
               key={item.id}
               user={user}
