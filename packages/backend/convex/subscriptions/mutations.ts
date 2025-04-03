@@ -75,6 +75,8 @@ export const subscriptionStoreWebhook = mutation({
             metadata: args.body.data.metadata || {},
             customFieldData: args.body.data.custom_field_data || {},
             plan: args.body.data.product.name,
+            interval: args.body.data.recurring_interval,
+            polarPriceId: args.body.data.price_id,
           });
         }
         break;
@@ -146,6 +148,61 @@ export const subscriptionStoreWebhook = mutation({
             endedAt: args.body.data.ended_at
               ? new Date(args.body.data.ended_at).getTime()
               : undefined,
+          });
+        }
+        break;
+
+      case "product.created":
+        // Insert new plan
+        await ctx.db.insert("plans", {
+          planId: args.body.data.id,
+          planName: args.body.data.name,
+          planDescription: args.body.data.description,
+          planInterval: args.body.data.recurring_interval,
+          isRecurring: args.body.data.is_recurring,
+          isArchived: args.body.data.is_archived,
+          createdAt: new Date(args.body.data.created_at).getTime(),
+          updatedAt: new Date(
+            args.body.data.modified_at || args.body.data.created_at
+          ).getTime(),
+          priceId: args.body.data.prices[0].id,
+          priceAmount: args.body.data.prices[0].price_amount,
+          priceCurrency: args.body.data.prices[0].price_currency,
+          priceAmountType: args.body.data.prices[0].amount_type,
+          planBenefits: args.body.data.benefits.map((benefit: any) => ({
+            benefitId: benefit.id,
+            benefitDescription: benefit.description,
+          })),
+          metadata: args.body.data.metadata || {},
+        });
+        break;
+
+      case "product.updated":
+        const plan = await ctx.db
+          .query("plans")
+          .withIndex("planId", (q) => q.eq("planId", args.body.data.id))
+          .first();
+        if (plan) {
+          // Update plan
+          await ctx.db.patch(plan._id, {
+            planName: args.body.data.name,
+            planDescription: args.body.data.description,
+            planInterval: args.body.data.recurring_interval,
+            isRecurring: args.body.data.is_recurring,
+            isArchived: args.body.data.is_archived,
+            createdAt: new Date(args.body.data.created_at).getTime(),
+            updatedAt: new Date(
+              args.body.data.modified_at || args.body.data.created_at
+            ).getTime(),
+            priceId: args.body.data.prices[0].id,
+            priceAmount: args.body.data.prices[0].price_amount,
+            priceCurrency: args.body.data.prices[0].price_currency,
+            priceAmountType: args.body.data.prices[0].amount_type,
+            planBenefits: args.body.data.benefits.map((benefit: any) => ({
+              benefitId: benefit.id,
+              benefitDescription: benefit.description,
+            })),
+            metadata: args.body.data.metadata || {},
           });
         }
         break;

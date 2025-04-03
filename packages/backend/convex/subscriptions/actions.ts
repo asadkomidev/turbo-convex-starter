@@ -11,7 +11,7 @@ import { api, internal } from "../_generated/api";
 import { Polar } from "@polar-sh/sdk";
 import { polar } from "../config/polar";
 import { getUserDetails, getUserId } from "../helpers/common";
-import { Benefit, Price, Product } from "../config/types";
+import { Benefit, Price, Plan } from "../config/types";
 
 export const getProOnboardingCheckoutUrl = action({
   args: {
@@ -30,6 +30,7 @@ export const getProOnboardingCheckoutUrl = action({
     const metadata = {
       userId: userId,
       userEmail: user.email,
+      userName: user.name,
     };
 
     const checkout = await createCheckout({
@@ -87,12 +88,12 @@ export const getUserDashboardUrl = action({
   },
 });
 
-export const getPolarProducts = action({
+export const getPlans = action({
   args: {},
   handler: async (
     ctx
   ): Promise<{
-    products: Product[];
+    plans: Plan[];
     pagination: { totalCount: number; maxPage: number };
     timestamp: number;
   }> => {
@@ -101,14 +102,14 @@ export const getPolarProducts = action({
     });
 
     // Transform and validate the response data
-    const products = data.result.items.map(
-      (product: any): Product => ({
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        recurringInterval: product.recurringInterval,
-        isRecurring: product.isRecurring,
-        prices: product.prices.map(
+    const plans = data.result.items.map(
+      (plan: any): Plan => ({
+        id: plan.id,
+        name: plan.name,
+        description: plan.description,
+        recurringInterval: plan.recurringInterval,
+        isRecurring: plan.isRecurring,
+        prices: plan.prices.map(
           (price: any): Price => ({
             id: price.id,
             priceAmount: price.priceAmount,
@@ -118,7 +119,7 @@ export const getPolarProducts = action({
             amountType: price.amountType,
           })
         ),
-        benefits: product.benefits.map(
+        benefits: plan.benefits.map(
           (benefit: any): Benefit => ({
             id: benefit.id,
             description: benefit.description,
@@ -128,8 +129,19 @@ export const getPolarProducts = action({
       })
     );
 
+    // Filter out free plans and sort by price amount
+    const filteredPlans = plans
+      .filter((plan) =>
+        plan.prices.some((price) => price.amountType !== "free")
+      )
+      .sort((a, b) => {
+        const aPrice = a.prices[0]?.priceAmount || 0;
+        const bPrice = b.prices[0]?.priceAmount || 0;
+        return aPrice - bPrice;
+      });
+
     return {
-      products,
+      plans: filteredPlans,
       pagination: {
         totalCount: data.result.pagination.totalCount,
         maxPage: data.result.pagination.maxPage,

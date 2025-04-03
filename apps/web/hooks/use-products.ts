@@ -16,14 +16,14 @@ interface ProductsResponse {
 }
 
 export const useProducts = () => {
-  const listProducts = useAction(api.subscriptions.actions.getPolarProducts);
+  const listProducts = useAction(api.subscriptions.actions.getPlans);
   const [products, setProducts] = useState<ProductsResponse | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const result = await listProducts();
-        setProducts(result);
+        setProducts({ products: result.plans });
       } catch (error) {
         console.error("Failed to fetch products", error);
       }

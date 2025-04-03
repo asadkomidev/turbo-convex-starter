@@ -4,6 +4,7 @@ import { FC } from "react";
 
 import { Button } from "@workspace/ui/components/button";
 import { SignInFunctionType } from "@/config/types";
+
 import { useIsPending } from "../hooks/use-is-pending";
 
 interface GoogleAuthButtonProps {

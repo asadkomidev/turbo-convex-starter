@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Button } from "@workspace/ui/components/button";
 import {
   Form,
   FormControl,
@@ -12,13 +11,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@workspace/ui/components/form";
+import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
+import { SignInFunctionType } from "@/config/types";
+import { codeSchema, CodeSchemaType } from "@/config/schema";
+
 import { useStepEmail } from "../hooks/use-step-email";
 import { useIsPending } from "../hooks/use-is-pending";
-import { useRouter } from "next/navigation";
-import { SignInFunctionType } from "@/config/types";
-
-import { codeSchema, CodeSchemaType } from "@/config/schema";
 import { useLogin } from "../hooks/use-login";
 
 type CodeFormProps = {
@@ -29,8 +28,6 @@ export const CodeForm: React.FC<CodeFormProps> = ({ signIn }) => {
   const { setStep, email } = useStepEmail();
   const { isPending, setIsPending } = useIsPending();
   const { setOpen } = useLogin();
-
-  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(codeSchema),

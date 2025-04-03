@@ -26,8 +26,6 @@ import { PhoneInput, phoneSchema } from "@workspace/ui/components/phone-input";
 import { useAction, useMutation } from "convex/react";
 import { Id } from "@workspace/backend/convex/_generated/dataModel";
 
-import logger from "@/lib/debux";
-
 const profileSchema = z.object({
   title: z.string(),
   location: z.string(),

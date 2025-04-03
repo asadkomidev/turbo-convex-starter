@@ -34,7 +34,7 @@ export type Benefit = {
   type: string;
 };
 
-export type Product = {
+export type Plan = {
   id: string;
   name: string;
   description: string;
@@ -44,8 +44,8 @@ export type Product = {
   benefits: Benefit[];
 };
 
-export type ProductsResponse = {
-  products: Product[];
+export type PlansResponse = {
+  plans: Plan[];
   pagination: {
     totalCount: number;
     maxPage: number;
