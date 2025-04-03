@@ -2,26 +2,34 @@
 
 import React from "react";
 import Link from "next/link";
-
 import { Button } from "@workspace/ui/components/button";
 import { User } from "@/config/types";
-import { UserMenu } from "@/components/shared/user-menu";
 import { useLogin } from "@/features/auth/hooks/use-login";
-import GithubIcon from "@/components/icons/github-icon";
-import XIcon from "@/components/icons/x-icon";
+import { GithubLink } from "../shared/github-link";
+import { XLink } from "../shared/x-link";
+import { UserMenu } from "./user-menu";
 
 interface RightMenuProps {
   user: User | null;
   hasAccess: boolean;
 }
 
-const LoginButton = () => {
+interface GetStartedButtonProps {
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+const LoginButton: React.FC = () => {
   const { setOpen } = useLogin();
+
+  const handleLogin = React.useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
+
   return (
     <Button
       size="sm"
       variant="ghost"
-      onClick={() => setOpen(true)}
+      onClick={handleLogin}
       aria-label="Open login modal"
       className="rounded-lg"
     >
@@ -30,7 +38,7 @@ const LoginButton = () => {
   );
 };
 
-const DashboardButton = () => (
+const DashboardButton: React.FC = () => (
   <Button asChild variant="secondary" size="sm" className="rounded-lg">
     <Link href="/dashboard" aria-label="Go to dashboard">
       Dashboard
@@ -38,11 +46,7 @@ const DashboardButton = () => (
   </Button>
 );
 
-const GetStartedButton = ({
-  onClick,
-}: {
-  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-}) => (
+const GetStartedButton: React.FC<GetStartedButtonProps> = ({ onClick }) => (
   <Button asChild variant="secondary" size="sm" className="rounded-lg">
     <Link href="/#pricing" onClick={onClick} aria-label="View pricing">
       Get Started
@@ -50,23 +54,7 @@ const GetStartedButton = ({
   </Button>
 );
 
-const GithubButton = () => (
-  <Link
-    href="https://github.com/asadkomidev/turbo-convex-starter"
-    target="_blank"
-    aria-label="Go to GitHub"
-  >
-    <GithubIcon />
-  </Link>
-);
-
-const XButton = () => (
-  <Link href="https://x.com/AsadKomi" target="_blank" aria-label="Go to X">
-    <XIcon />
-  </Link>
-);
-
-export const RightMenu = ({ user, hasAccess }: RightMenuProps) => {
+export const RightMenu: React.FC<RightMenuProps> = ({ user, hasAccess }) => {
   const handlePricingScroll = React.useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
@@ -78,29 +66,30 @@ export const RightMenu = ({ user, hasAccess }: RightMenuProps) => {
     []
   );
 
+  const renderAuthenticatedContent = () => (
+    <>
+      <div className="hidden lg:flex">
+        {hasAccess ? (
+          <DashboardButton />
+        ) : (
+          <GetStartedButton onClick={handlePricingScroll} />
+        )}
+      </div>
+      <div className="hidden lg:flex">
+        <UserMenu user={user} />
+      </div>
+    </>
+  );
+
   return (
     <nav
       className="hidden lg:flex items-center gap-4 w-full justify-end"
       aria-label="User navigation"
     >
-      <GithubButton />
-      <XButton />
+      <GithubLink />
+      <XLink />
       {!user && <LoginButton />}
-
-      {user && (
-        <>
-          <div className="hidden lg:flex">
-            {hasAccess ? (
-              <DashboardButton />
-            ) : (
-              <GetStartedButton onClick={handlePricingScroll} />
-            )}
-          </div>
-          <div className="hidden lg:flex">
-            <UserMenu user={user} />
-          </div>
-        </>
-      )}
+      {user && renderAuthenticatedContent()}
     </nav>
   );
 };

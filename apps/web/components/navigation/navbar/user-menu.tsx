@@ -2,7 +2,6 @@
 
 import { FC } from "react";
 import { useRouter } from "next/navigation";
-
 import { useAuthActions } from "@convex-dev/auth/react";
 
 import {
@@ -19,35 +18,47 @@ import {
 } from "@workspace/ui/components/avatar";
 import { Button } from "@workspace/ui/components/button";
 import { User } from "@/config/types";
-
-import ThemeToggle from "./theme-toggle";
+import ThemeToggle from "@/components/shared/theme-toggle";
 
 interface UserMenuProps {
   user: User | null;
 }
 
+const getInitials = (name?: string): string => {
+  if (!name) return "U";
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+};
+
 export const UserMenu: FC<UserMenuProps> = ({ user }) => {
   const router = useRouter();
   const { signOut } = useAuthActions();
 
-  const initials = user?.name
-    ?.split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
+  const initials = getInitials(user?.name);
 
-  const onSignOut = async () => {
-    await signOut();
-    router.push("/");
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      router.push("/");
+    } catch (error) {
+      console.error("Failed to sign out:", error);
+    }
+  };
+
+  const handleDashboardNavigation = () => {
+    router.push("/dashboard");
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none cursor-pointer">
         <Avatar className="h-8 w-8 bg-gradient-to-br from-blue-500 to-blue-300">
-          <AvatarImage src={user?.image} />
+          <AvatarImage src={user?.image} alt={user?.name || "User avatar"} />
           <AvatarFallback className="text-white text-sm sr-only">
-            {initials || "U"}
+            {initials}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -55,14 +66,14 @@ export const UserMenu: FC<UserMenuProps> = ({ user }) => {
         align="end"
         className="min-w-56 rounded-3xl border p-6 shadow-xl mt-2 space-y-2"
       >
-        <DropdownMenuLabel className="">
+        <DropdownMenuLabel>
           <div className="flex flex-col space-y-2">
-            <p className=" leading-none ">{user?.email}</p>
+            <p className="leading-none">{user?.email}</p>
           </div>
         </DropdownMenuLabel>
 
         <DropdownMenuItem
-          onClick={() => router.push("/dashboard")}
+          onClick={handleDashboardNavigation}
           className="rounded-lg h-10 text-muted-foreground hover:text-primary cursor-pointer mt-2"
         >
           Dashboard
@@ -77,7 +88,7 @@ export const UserMenu: FC<UserMenuProps> = ({ user }) => {
           <Button
             variant="outline"
             className="w-full rounded-lg"
-            onClick={onSignOut}
+            onClick={handleSignOut}
           >
             Logout
           </Button>

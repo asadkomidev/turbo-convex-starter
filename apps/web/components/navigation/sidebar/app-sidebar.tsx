@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar";
 import { NavMain } from "./nav-main";
-import { AccountSettings } from "@/features/dashboard/account/components/account-settings";
+import { NavUser } from "./nav-user";
 import Link from "next/link";
 import { sidebarItems } from "@/config/constants";
 
@@ -41,7 +41,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={sidebarItems.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <AccountSettings />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );

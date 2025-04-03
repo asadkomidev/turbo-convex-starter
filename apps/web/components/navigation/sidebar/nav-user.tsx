@@ -6,7 +6,6 @@ import {
   CreditCard,
   Home,
   LogOut,
-  Sparkles,
 } from "lucide-react";
 
 import {
@@ -31,25 +30,20 @@ import {
 } from "@workspace/ui/components/sidebar";
 import { useUser } from "@/hooks/use-user";
 import { useSignOut } from "@/hooks/use-sign-out";
-import { useAccess } from "@/hooks/use-access";
 import { useSettings } from "@/hooks/use-settings";
 import { Skeleton } from "@workspace/ui/components/skeleton";
 import ThemeToggle from "@/features/dashboard/account/components/theme-toggle";
 
-import { useQuery } from "convex/react";
-import { api } from "@workspace/backend/convex/_generated/api";
 import { useRouter } from "next/navigation";
 
-export const AccountSettings = () => {
+export const NavUser = () => {
   const { isMobile } = useSidebar();
   const router = useRouter();
 
   const { user, isLoading } = useUser();
   const signout = useSignOut();
-  const hasAccess = useAccess();
-  const subscription = useQuery(api.subscriptions.queries.getUserSubscription);
 
-  const { setOpenUpgrade, setOpenAccount, setOpenBilling } = useSettings();
+  const { setOpenAccount, setOpenBilling } = useSettings();
 
   return (
     <SidebarMenu>
@@ -100,19 +94,6 @@ export const AccountSettings = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
 
-            {!hasAccess ||
-              (subscription?.plan?.toLowerCase() === "free" && (
-                <>
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem onClick={() => setOpenUpgrade(true)}>
-                      <Sparkles />
-                      Upgrade to Pro
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                </>
-              ))}
-
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => setOpenAccount(true)}>
                 <BadgeCheck />
@@ -126,10 +107,6 @@ export const AccountSettings = () => {
                 <Home />
                 Home Page
               </DropdownMenuItem>
-              {/* <DropdownMenuItem onClick={() => setOpenNotification(true)}>
-                <Bell />
-                Notifications
-              </DropdownMenuItem> */}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>

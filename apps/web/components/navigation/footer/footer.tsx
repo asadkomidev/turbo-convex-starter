@@ -1,26 +1,9 @@
 import Logo from "@/components/shared/logo";
-import Link from "next/link";
-import { footerLinks } from "@/config/constants";
-import GithubIcon from "@/components/icons/github-icon";
-import XIcon from "@/components/icons/x-icon";
+
 import ThemeToggle from "@/components/shared/theme-toggle";
 import Container from "@/components/shared/container";
-
-const GithubButton = () => (
-  <Link
-    href="https://github.com/asadkomidev/turbo-convex-starter"
-    target="_blank"
-    aria-label="Go to GitHub"
-  >
-    <GithubIcon />
-  </Link>
-);
-
-const XButton = () => (
-  <Link href="https://x.com/AsadKomi" target="_blank" aria-label="Go to X">
-    <XIcon />
-  </Link>
-);
+import { GithubLink } from "../shared/github-link";
+import { XLink } from "../shared/x-link";
 
 export const Footer = () => {
   return (
@@ -34,8 +17,8 @@ export const Footer = () => {
             </span>
           </div>
           <div className="order-first flex items-center justify-center gap-4 text-sm md:order-last">
-            <GithubButton />
-            <XButton />
+            <GithubLink />
+            <XLink />
             <ThemeToggle />
           </div>
         </div>
