@@ -16,12 +16,20 @@
     {
       "title": "\u001b[32m\n📱 Development Environment\u001b[0m\n",
       "description": "\nSet up your local development environment\n",
-      "instructions": "\nThis URL serves as the base URL for:\n- Local development server\n- Authentication callbacks\n- API endpoints\nKeep the default unless you have a custom port configuration.\n",
+      "instructions": [
+        "1. \nMain app URL\nThis URL serves as the base URL for:\n- Local development server\n- Authentication callbacks\n- API endpoints\nKeep the default unless you have a custom port configuration.\n",
+        "2. \nDocs URL\nThis URL serves as the base URL for the docs application.\n"
+      ],
       "variables": [
         {
           "name": "NEXT_PUBLIC_APP_URL",
           "projects": ["web"],
           "defaultValue": "http://localhost:3000"
+        },
+        {
+          "name": "NEXT_PUBLIC_DOCS_URL",
+          "projects": ["web"],
+          "defaultValue": "http://localhost:3001"
         }
       ],
       "interactive": false

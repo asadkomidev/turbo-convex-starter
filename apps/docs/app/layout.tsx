@@ -5,6 +5,7 @@ import "nextra-theme-docs/style.css";
 import "@workspace/ui/globals.css";
 import { navbar } from "@/components/navbar";
 import { banner } from "@/components/banner";
+import { Search } from "@/components/search";
 
 export const metadata = {
   title: "Tcn Docs",
@@ -32,8 +33,9 @@ export default async function RootLayout({
           docsRepositoryBase="https://github.com/asadkomidev/turbo-convex-starter"
           sidebar={{ toggleButton: false }}
           darkMode={false}
+          search={<Search />}
         >
-          {children}
+          <div data-pagefind-body>{children}</div>
         </Layout>
       </body>
     </html>
