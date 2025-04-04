@@ -1,6 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { getUserId } from "./helpers/common";
+import { getUserId } from "./config/utils";
 
 export const generateUrl = mutation({
   args: {},

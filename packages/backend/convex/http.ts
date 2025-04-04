@@ -1,15 +1,15 @@
 import { httpRouter } from "convex/server";
 import { auth } from "./auth";
-import { paymentWebhook } from "./subscriptions/actions";
+import { polarWebhook } from "./subscriptions/actions";
 
 const http = httpRouter();
 
 auth.addHttpRoutes(http);
 
 http.route({
-  path: "/payments/webhook",
+  path: "/polar/webhook",
   method: "POST",
-  handler: paymentWebhook,
+  handler: polarWebhook,
 });
 
 export default http;

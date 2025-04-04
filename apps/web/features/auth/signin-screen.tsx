@@ -1,15 +1,16 @@
 "use client";
 
 import { useAuthActions } from "@convex-dev/auth/react";
+import Link from "next/link";
+
+import Logo from "@/components/shared/logo";
+import { cn } from "@workspace/ui/lib/utils";
 
 import { Divider } from "./components/divider";
 import { EmailForm } from "./components/email-form";
 import { GithubAuthButton } from "./components/github-auth-button";
 import { useStepEmail } from "./hooks/use-step-email";
 import { CodeForm } from "./components/code-form";
-import Link from "next/link";
-import Logo from "@/components/shared/logo";
-import { cn } from "@workspace/ui/lib/utils";
 
 interface SignInScreenProps {
   modal?: boolean;

@@ -12,9 +12,9 @@ export const LoginModal = () => {
       open={open}
       setOpen={setOpen}
       showWithoutUser={true}
-      className="!rounded-4xl !w-[450px]"
+      className="!rounded-4xl !w-[400px]"
     >
-      <div className="p-16">
+      <div className="p-10">
         <SignInScreen modal />
       </div>
     </Modal>

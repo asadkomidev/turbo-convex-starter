@@ -8,7 +8,6 @@ export function ToastProvider() {
 
   return (
     <Toaster
-      richColors
       theme={theme as "light" | "dark" | "system"}
       className="toaster group"
     />

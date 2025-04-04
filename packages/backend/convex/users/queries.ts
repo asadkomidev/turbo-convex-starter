@@ -1,7 +1,6 @@
 import { v } from "convex/values";
 import { query } from "../_generated/server";
-import { User } from "../config/types";
-import { getUserId, getUserDetails } from "../helpers/common";
+import { getUserId, getUserDetails } from "../config/utils";
 
 export const getCurrentUser = query({
   args: {},

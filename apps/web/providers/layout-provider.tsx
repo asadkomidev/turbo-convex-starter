@@ -12,12 +12,11 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexAuthNextjsServerProvider>
-      <html
-        lang="en"
-        suppressHydrationWarning
-        className={GeistSans.variable + " scroll-smooth"}
-      >
-        <body suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          suppressHydrationWarning
+          className={GeistSans.variable + " scroll-smooth"}
+        >
           <AppProvider>{children}</AppProvider>
         </body>
       </html>
