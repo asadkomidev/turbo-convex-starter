@@ -1,4 +1,4 @@
-import { hasAccess } from "@/actions/subscription";
+import { getUserAccess } from "@/actions/subscription";
 import { SidebarLayout } from "@/components/navigation/sidebar/sidebar-layout";
 import LayoutProvider from "@/providers/layout-provider";
 
@@ -18,9 +18,9 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }): Promise<JSX.Element> {
-  const isSubscribed = await hasAccess();
+  const hasAccess = await getUserAccess();
 
-  if (!isSubscribed) {
+  if (!hasAccess) {
     redirect("/");
   }
   return (

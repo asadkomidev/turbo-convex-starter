@@ -15,8 +15,8 @@ import { useSettings } from "@/hooks/use-settings";
 export const BillingContent = () => {
   const { setOpenBilling } = useSettings();
   const subscription = useQuery(api.subscriptions.queries.getUserSubscription);
-  const getDashboardUrl = useAction(
-    api.subscriptions.actions.getUserDashboardUrl
+  const getCustomerPortalUrl = useAction(
+    api.subscriptions.actions.getCustomerPortalUrl
   );
 
   const handleManageSubscription = async () => {
@@ -25,7 +25,7 @@ export const BillingContent = () => {
     }
 
     try {
-      const result = await getDashboardUrl({
+      const result = await getCustomerPortalUrl({
         customerId: subscription.customerId,
       });
       if (result?.url) {

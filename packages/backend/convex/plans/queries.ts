@@ -1,17 +1,15 @@
 import { query } from "../_generated/server";
 import { Doc } from "../_generated/dataModel";
+import { getPlans } from "../config/utils";
 
 export type PlansQueryResult = {
   monthlyPlans: Doc<"plans">[];
   yearlyPlans: Doc<"plans">[];
 };
 
-export const getPlans = query({
+export const getActivePlans = query({
   handler: async (ctx): Promise<PlansQueryResult> => {
-    const plans = await ctx.db
-      .query("plans")
-      .withIndex("isArchived", (q) => q.eq("isArchived", false))
-      .collect();
+    const plans = await getPlans(ctx, false);
 
     if (!plans) {
       return { monthlyPlans: [], yearlyPlans: [] };

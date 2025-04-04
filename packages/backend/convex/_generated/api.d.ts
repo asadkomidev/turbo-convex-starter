@@ -14,30 +14,25 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as auth from "../auth.js";
-import type * as config_constants from "../config/constants.js";
 import type * as config_polar from "../config/polar.js";
-import type * as config_types from "../config/types.js";
-import type * as config from "../config.js";
+import type * as config_utils from "../config/utils.js";
+import type * as customers_tables from "../customers/tables.js";
 import type * as emails_ResendOTP from "../emails/ResendOTP.js";
-import type * as emails_SigninEmail from "../emails/SigninEmail.js";
 import type * as emails_templates_verification from "../emails/templates/verification.js";
 import type * as files from "../files.js";
-import type * as helpers_common from "../helpers/common.js";
-import type * as helpers_helpers from "../helpers/helpers.js";
 import type * as http from "../http.js";
 import type * as plans_queries from "../plans/queries.js";
+import type * as plans_tables from "../plans/tables.js";
 import type * as subscriptions_actions from "../subscriptions/actions.js";
-import type * as subscriptions_internals from "../subscriptions/internals.js";
+import type * as subscriptions_helpers from "../subscriptions/helpers.js";
 import type * as subscriptions_mutations from "../subscriptions/mutations.js";
 import type * as subscriptions_queries from "../subscriptions/queries.js";
-import type * as tables_plans from "../tables/plans.js";
-import type * as tables_subscriptions from "../tables/subscriptions.js";
-import type * as tables_users from "../tables/users.js";
-import type * as tables_webhooks from "../tables/webhooks.js";
+import type * as subscriptions_tables from "../subscriptions/tables.js";
 import type * as users_actions from "../users/actions.js";
 import type * as users_internals from "../users/internals.js";
 import type * as users_mutations from "../users/mutations.js";
 import type * as users_queries from "../users/queries.js";
+import type * as users_tables from "../users/tables.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -49,30 +44,25 @@ import type * as users_queries from "../users/queries.js";
  */
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
-  "config/constants": typeof config_constants;
   "config/polar": typeof config_polar;
-  "config/types": typeof config_types;
-  config: typeof config;
+  "config/utils": typeof config_utils;
+  "customers/tables": typeof customers_tables;
   "emails/ResendOTP": typeof emails_ResendOTP;
-  "emails/SigninEmail": typeof emails_SigninEmail;
   "emails/templates/verification": typeof emails_templates_verification;
   files: typeof files;
-  "helpers/common": typeof helpers_common;
-  "helpers/helpers": typeof helpers_helpers;
   http: typeof http;
   "plans/queries": typeof plans_queries;
+  "plans/tables": typeof plans_tables;
   "subscriptions/actions": typeof subscriptions_actions;
-  "subscriptions/internals": typeof subscriptions_internals;
+  "subscriptions/helpers": typeof subscriptions_helpers;
   "subscriptions/mutations": typeof subscriptions_mutations;
   "subscriptions/queries": typeof subscriptions_queries;
-  "tables/plans": typeof tables_plans;
-  "tables/subscriptions": typeof tables_subscriptions;
-  "tables/users": typeof tables_users;
-  "tables/webhooks": typeof tables_webhooks;
+  "subscriptions/tables": typeof subscriptions_tables;
   "users/actions": typeof users_actions;
   "users/internals": typeof users_internals;
   "users/mutations": typeof users_mutations;
   "users/queries": typeof users_queries;
+  "users/tables": typeof users_tables;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

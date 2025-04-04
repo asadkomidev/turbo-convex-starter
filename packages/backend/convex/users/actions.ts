@@ -1,9 +1,7 @@
 import { ConvexError, v } from "convex/values";
 import { action } from "../_generated/server";
-
 import { api, internal } from "../_generated/api";
-
-import { getUserId } from "../helpers/common";
+import { getUserId } from "../config/utils";
 import { polar } from "../config/polar";
 
 export const deleteUserAction = action({
@@ -33,6 +31,7 @@ export const deleteUserAction = action({
         (await polar.customers.delete({
           id: subscriptions.customerId!,
         })),
+
       await ctx.runMutation(api.users.mutations.deleteUser, {
         userId,
       }),

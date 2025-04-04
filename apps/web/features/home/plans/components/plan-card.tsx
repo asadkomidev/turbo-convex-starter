@@ -32,9 +32,7 @@ export const PlanCard = ({
   handleManageSubscription,
   hasAccess,
 }: Props) => {
-  const getProCheckoutUrl = useAction(
-    api.subscriptions.actions.getProOnboardingCheckoutUrl
-  );
+  const getCheckoutUrl = useAction(api.subscriptions.actions.getCheckoutUrl);
 
   const handleCheckout = async (): Promise<void> => {
     if (!plan.priceId) return;
@@ -46,7 +44,7 @@ export const PlanCard = ({
     }
 
     try {
-      const checkout = await getProCheckoutUrl({ priceId: plan.priceId });
+      const checkout = await getCheckoutUrl({ priceId: plan.priceId });
       window.location.href = checkout;
     } catch {
       toast.error("Failed to get checkout URL");

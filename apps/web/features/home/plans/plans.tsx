@@ -17,7 +17,7 @@ import {
 export const Plans = () => {
   const { toggle } = usePlanToggle();
 
-  const plans = useQuery(api.plans.queries.getPlans);
+  const plans = useQuery(api.plans.queries.getActivePlans);
   const displayPlans = toggle ? plans?.yearlyPlans : plans?.monthlyPlans;
 
   return (

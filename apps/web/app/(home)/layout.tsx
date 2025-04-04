@@ -4,8 +4,8 @@ import { Navbar } from "@/components/navigation/navbar/navbar";
 import LayoutProvider from "@/providers/layout-provider";
 import { Metadata } from "next";
 import { JSX } from "react";
+import { getUserAccess } from "@/actions/subscription";
 import { auth } from "@/actions/auth";
-import { hasAccess } from "@/actions/subscription";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://turbo-convex-starter-web.vercel.app/"),
@@ -43,11 +43,11 @@ export default async function Layout({
   children: React.ReactNode;
 }): Promise<JSX.Element> {
   const user = await auth();
-  const isSubscribed = await hasAccess();
+  const hasAccess = await getUserAccess();
 
   return (
     <LayoutProvider>
-      <Navbar user={user || null} isSubscribed={isSubscribed} />
+      <Navbar user={user || null} hasAccess={hasAccess} />
       {children}
       <Footer />
     </LayoutProvider>

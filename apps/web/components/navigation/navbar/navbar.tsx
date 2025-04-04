@@ -11,12 +11,12 @@ import { RightMenu } from "./right-menu";
 
 interface NavbarProps {
   user: User | null;
-  isSubscribed: boolean;
+  hasAccess: boolean;
 }
 
 const SCROLL_THRESHOLD = 0;
 
-export const Navbar: React.FC<NavbarProps> = ({ user, isSubscribed }) => {
+export const Navbar: React.FC<NavbarProps> = ({ user, hasAccess }) => {
   const [menuState, setMenuState] = React.useState<boolean>(false);
   const [scrolled, setScrolled] = React.useState<boolean>(false);
 
@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, isSubscribed }) => {
     };
 
     const unsubscribe = scrollYProgress.on("change", handleScroll);
-    
+
     return () => {
       unsubscribe();
     };
@@ -55,13 +55,9 @@ export const Navbar: React.FC<NavbarProps> = ({ user, isSubscribed }) => {
         <Container className="w-full">
           <div className="relative flex items-center justify-between py-3">
             <LeftMenu />
-            <RightMenu user={user} hasAccess={isSubscribed} />
+            <RightMenu user={user} hasAccess={hasAccess} />
           </div>
-          <MobileMenu 
-            user={user} 
-            isOpen={menuState} 
-            onToggle={toggleMenu} 
-          />
+          <MobileMenu user={user} isOpen={menuState} onToggle={toggleMenu} />
         </Container>
       </nav>
     </header>

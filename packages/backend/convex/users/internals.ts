@@ -1,12 +1,5 @@
 import { v } from "convex/values";
-import {
-  internalAction,
-  internalMutation,
-  internalQuery,
-} from "../_generated/server";
-
-import { internal } from "../_generated/api";
-import { getUserId } from "../helpers/common";
+import { internalQuery } from "../_generated/server";
 
 export const getInternalUser = internalQuery({
   args: {

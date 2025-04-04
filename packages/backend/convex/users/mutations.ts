@@ -1,7 +1,7 @@
 import { ConvexError, v } from "convex/values";
 import { mutation } from "../_generated/server";
 
-import { getUserId } from "../helpers/common";
+import { getUserId } from "../config/utils";
 
 export const deleteImage = mutation({
   args: {
@@ -35,16 +35,14 @@ export const updateProfile = mutation({
   },
   handler: async (ctx, args) => {
     try {
-      // const userId = await getUserId(ctx);
-      // if (!userId) {
-      //   throw new ConvexError("Unauthorized");
-      // }
+      const userId = await getUserId(ctx);
+      if (!userId) {
+        throw new ConvexError("Unauthorized");
+      }
 
-      // await ctx.db.patch(userId, args);
+      await ctx.db.patch(userId, args);
 
-      // return userId;
-
-      throw new Error("Not implemented from mutations");
+      return userId;
     } catch (error) {
       throw error;
     }
@@ -84,6 +82,12 @@ export const deleteUser = mutation({
       .withIndex("userId", (q) => q.eq("userId", userId))
       .collect();
 
+    // Fetch all customers for the user in parallel
+    const customers = await ctx.db
+      .query("customers")
+      .withIndex("userId", (q) => q.eq("userId", userId))
+      .collect();
+
     // Delete all auth-related data in parallel
     await Promise.all([
       // Delete auth accounts
@@ -95,9 +99,8 @@ export const deleteUser = mutation({
 
       // Delete subscriptions
       ...subscriptions.map((subscription) => ctx.db.delete(subscription._id)),
-
-      // Delete all user-related data from other tables
-      // deleteUserRelatedData(ctx, userId),
+      // Delete customers
+      ...customers.map((customer) => ctx.db.delete(customer._id)),
     ]);
 
     // Finally delete the user
