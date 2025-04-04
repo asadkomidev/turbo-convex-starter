@@ -96,20 +96,9 @@
         "   - Organization ID: Find in Settings > General > Organization\n",
         "   - Access Token: Generate in Settings > Developers (all permissions)\n",
         "   - Webhook Configuration:\n",
-        "     • Webhook URL: \u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m\n",
+        "     • Webhook URL: \u001b[34m{{convexSiteUrl}}/polar/webhook\u001b[0m\n",
         "     • Required Events: All subscription and payment events\n",
-        "     • Format: Select Raw\n",
-        "4. Create a subscription product:\n",
-        "   - Access \u001b[34mhttps://sandbox.polar.sh\u001b[0m\n",
-        "   - Go to Products > Catalogue > New Product\n",
-        "   - Configure your product:\n",
-        "     • Name: Your product name\n",
-        "     • Description: Product features\n",
-        "     • Pricing: Set your pricing tiers\n",
-        "     • Benefits: Add product benefits\n",
-        "   \u001b[33m⚠️  Important: Create at least one product before continuing!\u001b[0m\n",
-        "   Press Enter once you've set up your product.\n",
-        "5. This completes your payment integration setup\n"
+        "     • Format: Select Raw\n"
       ],
       "variables": [
         {
@@ -125,7 +114,7 @@
           "projects": ["convex"],
           "info": [
             "Webhook endpoint (copy exactly):",
-            "\u001b[34m{{convexSiteUrl}}/payments/webhook\u001b[0m"
+            "\u001b[34m{{convexSiteUrl}}/polar/webhook\u001b[0m"
           ]
         }
       ],

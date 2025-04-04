@@ -164,3 +164,28 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-border rounded-full;
 }
+
+.nextra-navbar {
+  @apply border-b-[0.5px];
+}
+.nextra-sidebar {
+  @apply border-r-[0.5px];
+}
+/* .nextra-sidebar ul li a {
+  @apply bg-sidebar;
+} */
+.nextra-sidebar ul li a {
+  @apply bg-background hover:bg-accent focus:bg-accent;
+}
+
+.nextra-sidebar .active a {
+  @apply bg-accent text-accent-foreground;
+}
+
+.nextra-border {
+  @apply !border-0;
+}
+
+.nextra-sidebar-footer {
+  @apply py-0 mb-4 bg-background;
+}
